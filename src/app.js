@@ -2,11 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv').config()
 const bodyParser = require("body-parser");
-const expressJwt = require("express-jwt");
 
 
 
 
+//Import Middleware
 const bookRouter = require("./routes/api/book");
 const authRouter = require("./routes/api/auth");
 
@@ -23,6 +23,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+//middlewere path
 app.use(bookRouter);
 app.use(authRouter);
 
