@@ -11,7 +11,7 @@ const bookRouter = require("./routes/api/book");
 const authRouter = require("./routes/api/auth");
 
 const app = express();
-// const DB_CONNECT = 'mongodb+srv://shayam:wajcha@cluster0.j5zo5.mongodb.net/apiBooks?retryWrites=true&w=majority';
+
 
 
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true },
