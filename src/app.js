@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require('dotenv').config({  debug:process.env.DEBUG })
+const dotenv = require('dotenv').config()
 const bodyParser = require("body-parser");
 const expressJwt = require("express-jwt");
 
@@ -23,8 +23,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', bookRouter);
-app.use('/', authRouter);
+app.use(bookRouter);
+app.use(authRouter);
 
 
 

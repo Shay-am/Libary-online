@@ -5,12 +5,11 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
 const mongoose = require('mongoose');
 
-
+console.log(User1)
 
 //bibliotek szyfrowania password
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync(10);
-const hashpassword = bcrypt.hashSync("B4c0/\/", salt);
 
 router.get('/api/auth/register', async (req, res) => {
     try {
@@ -23,11 +22,13 @@ router.get('/api/auth/register', async (req, res) => {
     }
 })
 router.post('/api/auth/register', async (req, res) => {
-
-    const emailExist = await User1.findOne({ email: req.body.email });
+    const { email, password } = req.body
+    const emailExist = await User1.findOne({ email });
     if (emailExist) {
         return res.status(400).json({ err: "Email already exist" })
     }
+    const hashpassword = bcrypt.hashSync(password, salt);
+
     try {
         const response = await User1.create({
             name: req.body.name,
@@ -48,6 +49,7 @@ router.post('/api/auth/login', async (req, res) => {
     try {
         //sprawdzamy czy email istnieje
         const user = await User1.findOne({ email: req.body.email });
+        console.log(user)
         if (!user)
             return res.status(400).json({ err: "User not exist" });
 

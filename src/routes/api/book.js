@@ -1,10 +1,10 @@
 const express = require("express");
 const Book= require( "../../models/Book");
 const router = express.Router();
-const verifyToken = require("../../utils/verifyToken");
-
+const { verifyToken } = require("../../utils/verifyToken");
+console.log(verifyToken)
 //get all books
-router.get('/api/books', async (req, res) => {
+router.get('/api/books', verifyToken ,async (req, res) => {
     try {
         const response = await Book.find();
         res.json({
@@ -13,6 +13,7 @@ router.get('/api/books', async (req, res) => {
     }catch(error) {
         res.status(400).json({ error });
     }
+    
 });
 
 
@@ -35,13 +36,15 @@ router.get('/api/books/:id', async (req, res) => {
 
 //POST book 
 router.post('/api/books', verifyToken, async (req, res) => {
+    
     try {
         const response = await Book.create({
             title: req.body.title,
             author: req.body.author
         });
+       const savedbook = await response.save();
         res.json({
-            data: response
+            data: savedbook
         })
     }catch (error) {
         res.status(400).json( { error });
