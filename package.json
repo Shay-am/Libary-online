@@ -2,10 +2,10 @@
   "name": "apirestfull",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node --exec babel-node src/app.js",
-    "devstart": "nodemon --exec babel-node src/app.js"
+    "start": "node app.js",
+    "devstart": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "@hapi/joi": "^15.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "curl": "^0.1.4",
