@@ -76,6 +76,7 @@ router.post('/api/auth/login', async (req, res) => {
         });
         res.status(200).json()
     } catch (error) {
+        res.status(400).send( { error: 'UPS You can not logged in!!' });
         console.log({ error: 'UPS You can not logged in!!' })
     }
 });

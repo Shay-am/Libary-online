@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { verifyToken } = require("../utils/verifyToken");
-const bookControllers = require('../Controllers/bookControllers')
+const bookControllers = require('../controllers/bookControllers')
 
 
 //get all books

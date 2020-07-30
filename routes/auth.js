@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const authControllers = require('../Controllers/authController');
+const authControllers = require('../controllers/authController');
 
 
 //Get all users
