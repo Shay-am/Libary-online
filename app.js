@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require('dotenv').config()
-const bodyParser = require("body-parser");
+const cors = require('cors');
 
 
 
@@ -12,16 +11,15 @@ const authRouter = require("./routes/auth");
 
 const app = express();
 
-
-
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true },
+mongoose.connect(process.env.DB_CONNECT, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, },
     () => console.log("Connected to MongoDB")
 );
 
 // middleware - parse JSON
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
 
 
 //middlewere path

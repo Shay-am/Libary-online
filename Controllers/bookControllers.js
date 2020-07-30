@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const Book= require( "../models/Book");
-const { verifyToken } = require("../utils/verifyToken");
 
 //get all books
-router.get('/api/books', verifyToken ,async (req, res) => {
+router.get('/api/books', async (req, res) => {
     try {
         const response = await Book.find();
         res.json({
@@ -11,12 +10,8 @@ router.get('/api/books', verifyToken ,async (req, res) => {
         });
     }catch(error) {
         res.status(400).json({ error });
-    }
-    
+    }  
 });
-
-
-
 
 //get single book
 router.get('/api/books/:id', async (req, res) => {
@@ -30,12 +25,8 @@ router.get('/api/books/:id', async (req, res) => {
     }
 });
 
-
-
-
-//POST book 
-router.post('/api/books', verifyToken, async (req, res) => {
-    
+//POST create book 
+router.post('/api/books', async (req, res) => {
     try {
         const response = await Book.create({
             title: req.body.title,
@@ -51,7 +42,7 @@ router.post('/api/books', verifyToken, async (req, res) => {
 });
 
 //PUT (update) book
-router.put('/:id', verifyToken, async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const response = await Book.findByIdAndUpdate(
             { _id: req.params.id },
@@ -67,11 +58,12 @@ router.put('/:id', verifyToken, async (req, res) => {
 });
 
 //Delete book
-router.delete('/:id',verifyToken, async (req, res) => {
+router.delete('/api/:id', async (req, res) => {
     try {
         const response = await Book.findOneAndDelete({_id: req.params.id});
         res.json({
-            data: response
+            data: response,
+            msg: 'Book is deleted'
         });
     } catch (error) {
         res.status(400).json({ error })

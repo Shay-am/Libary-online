@@ -14,12 +14,9 @@ const bookSchema = new mongoose.Schema({
     posted: {
         type: Date,
         default: Date.now
-    }
+    },
+    image: String,
+    images: Array
 });
-
-
-
-
-
 
 module.exports = mongoose.model('Book', bookSchema);
