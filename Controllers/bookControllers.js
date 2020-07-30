@@ -1,8 +1,7 @@
-const express = require("express");
-const Book= require( "../../models/Book");
-const router = express.Router();
-const { verifyToken } = require("../../utils/verifyToken");
-console.log(verifyToken)
+const router = require('express').Router();
+const Book= require( "../models/Book");
+const { verifyToken } = require("../utils/verifyToken");
+
 //get all books
 router.get('/api/books', verifyToken ,async (req, res) => {
     try {

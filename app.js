@@ -7,8 +7,8 @@ const bodyParser = require("body-parser");
 
 
 //Import Middleware
-const bookRouter = require("./routes/api/book");
-const authRouter = require("./routes/api/auth");
+const bookRouter = require('./routes/book');
+const authRouter = require("./routes/auth");
 
 const app = express();
 
@@ -32,6 +32,6 @@ app.use(authRouter);
 
 
 
-const port = process.env.PORT || '2000';
+const port = process.env.PORT || '9000';
 
 app.listen(port, () => console.log(`Server started on port ${port}!`));
