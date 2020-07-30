@@ -2,11 +2,10 @@ const router = require("express").Router();
 const User1 = require('../models/User');
 const jwt = require("jsonwebtoken");
 const { reqisterValidation } = require('../utils/validation')
-
 //bibliotek szyfrowania password
 const bcrypt = require("bcryptjs");
 
-
+//get all users
 router.get('/api/auth/register', async (req, res) => {
     try {
         const response = await User1.find();
@@ -18,7 +17,7 @@ router.get('/api/auth/register', async (req, res) => {
     }
 })
 
-
+//register user
 router.post('/api/auth/register', async (req, res) => {
     const { email, password } = req.body
     const emailExist = await User1.findOne({ email });
@@ -49,7 +48,7 @@ router.post('/api/auth/register', async (req, res) => {
     }
 });
 
-////Logowanie
+////Login users
 router.post('/api/auth/login', async (req, res) => {
     try {
         //sprawdzamy czy email istnieje
